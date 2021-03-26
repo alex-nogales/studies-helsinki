@@ -1,33 +1,33 @@
 import React from 'react'
 /* The code goes from here... */
-const Header = (props) => {
+const Header = ({course}) => {
   return (
-    <h1>{props.course}</h1>
+    <h1>{course}</h1>
   )
 }
 
-const Content = (props) => {
+const Content = ({parts}) => {
   return (
     <div>
-      <Part parts = {props.parts} />
+      <Part parts = {parts} />
     </div>
   )
 }
 
-const Part = (props) => {
+const Part = ({parts, name, exercises}) => {
   return (
     <div>
-      {props.parts.map((value, index) => <p key={index}> {value.name}  {value.exercises} </p> )}     
+      {parts.map((value, index) => <p key={index}> {value.name}  {value.exercises} </p> )}     
     </div>
   )
 }
 
-const Total = (props) => {
+const Total = ({parts}) => {
   let sum = 0
-  props.parts.forEach(value => {
+  parts.forEach(value => {
     sum = sum + value.exercises
   })
-  console.log(sum)
+
   return(
     <div>
       <p>Number of excercises {sum}</p>
