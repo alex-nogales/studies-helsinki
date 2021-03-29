@@ -23,15 +23,9 @@ const Part = ({parts, name, exercises}) => {
 }
 
 const Total = ({parts}) => {
-  const sumEx = parts.reduce(function(sum, ejercicio) {
-        return sum + ejercicio.exercises
-  }, 0)
-/*   const totalExcersises = parts.reduce(function(sum, excersise) {
-    console.log('the sum: ', sum)
-    console.log('the excersise: ', exercise)
-    return sum + excersise.exercises
-  }, 0) */
-/*   let sum = 0
+  const sumEx = parts.reduce((sum, ejercicio) => sum + ejercicio.exercises, 0)
+
+  /*   let sum = 0
   parts.forEach(value => {
     sum = sum + value.exercises
   }) */
