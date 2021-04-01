@@ -7,7 +7,6 @@ import Total from './Total'
 const Course = ({course}) => {
     const {name, parts}  = course
     const exercise = parts.map(part => part.exercises)
-    console.log('ex', exercise)
   
     return (
       <div>
