@@ -2,7 +2,7 @@ import React from 'react'
 
 import DelButton from './DelButton'
 
-const Persons = ({persons, searchName}) => {
+const Persons = ({persons, searchName, setNotificationMessage}) => {
     return (
         persons.filter(person => person.name.toLowerCase().includes(searchName.toLowerCase()))
         .map(person =>

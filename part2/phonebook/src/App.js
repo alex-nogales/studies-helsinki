@@ -63,7 +63,8 @@ const App = () => {
       <Filter searchName={searchName} setSearchName={setSearchName} />
 
       <h2>Add a new contact</h2>
-      <PersonForm addPerson={addPerson} newName={newName} setNewName={setNewName} newNumber={newNumber} setNewNumber={setNewNumber} />
+      <PersonForm addPerson={addPerson} newName={newName} setNewName={setNewName} newNumber={newNumber} setNewNumber={setNewNumber} 
+                  setNotificationMessage={setNotificationMessage} />
       
       <h2>Numbers</h2>
       <Persons persons={persons} searchName={searchName} />
