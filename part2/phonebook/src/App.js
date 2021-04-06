@@ -11,7 +11,7 @@ const App = () => {
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ searchName, setSearchName ] = useState('')
-  const [ notificationMessage, setNotificationMessage ] = useState(null)
+  const [ notification, setNotification ] = useState(null)
 
   useEffect(() => {
     personsService
@@ -20,7 +20,11 @@ const App = () => {
         setPersons(initialPersons)
       })
   })
-  
+  const notifyWith = (message, type='success') => {
+    setNotification({message, type})
+    setTimeout(() => setNotification(null), 5000)
+  }
+
   const addPerson = (event) => {
     event.preventDefault()
     const nameExists = persons.find(person => person.name === newName)
@@ -34,8 +38,7 @@ const App = () => {
           .update(nameExists.id, changedPerson)
           .then(returnedPerson => {
             setPersons(persons.map(person => person.id !== nameExists.id ? person : returnedPerson))
-            setNotificationMessage(`Modified ${newName} `)
-            setTimeout(() => setNotificationMessage(null), 5000)
+            notifyWith(`Modified ${newName}`)
           })
       }
 
@@ -50,8 +53,7 @@ const App = () => {
           setPersons(persons.concat(returnedPerson))
           setNewName('')
           setNewNumber('')
-          setNotificationMessage(`Added ${newName}`)
-          setTimeout(() => setNotificationMessage(null), 5000)
+          notifyWith(`Added ${newName}`)
         })
     }
   }
@@ -59,12 +61,12 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={notificationMessage} />
+      <Notification notification={notification} />
       <Filter searchName={searchName} setSearchName={setSearchName} />
 
       <h2>Add a new contact</h2>
       <PersonForm addPerson={addPerson} newName={newName} setNewName={setNewName} newNumber={newNumber} setNewNumber={setNewNumber} 
-                  setNotificationMessage={setNotificationMessage} />
+                  setNotification={setNotification} />
       
       <h2>Numbers</h2>
       <Persons persons={persons} searchName={searchName} />
