@@ -50,15 +50,11 @@ app.post('/api/persons', (request, response) => {
     const findPerson = persons.find(p => p.name === body.name)
 
     if (findPerson) {
-        return response.status(400).json({
-            error: 'this person already exists'
-        })
+        return response.status(400).json({error: 'this person already exists'})
     }
 
     if (!body.name || !body.number) {
-        return response.status(400).json({
-            error: 'Name or number are missing!'
-        })
+        return response.status(400).json({error: 'Name or number are missing!'})
     }
     const person = {
         id: generateId(1000),
@@ -83,8 +79,6 @@ app.get('/info', (request, response) => {
 
     response.send(`<p>Phonebook has info of ${personLength} persons</p><p>${timestamp}</p>`)
 })
-
-
 
 const PORT = 3001
 app.listen(PORT, () => {
