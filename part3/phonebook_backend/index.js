@@ -19,14 +19,15 @@ let persons = [
     }
 ]
 
+//root
 app.get('/', (request, response) => {
     response.send('<h1>Phonebook on backend!</h1>')
 })
 
+//api/persons
 app.get('/api/persons', (request, response) => {
     response.json(persons)
 })
-
 
 app.get('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
@@ -38,12 +39,21 @@ app.get('/api/persons/:id', (request, response) => {
     }
 })
 
+app.delete('/api/persons/:id', (request, response) => {
+    const id = Number(request.param.id)
+    persons = persons.filter(p => p.id === id)
+
+    response.status(204).end()
+})
+
+//info
 app.get('/info', (request, response) => {
     timestamp = new Date()
     personLength = persons.length
 
     response.send(`<p>Phonebook has info of ${personLength} persons</p><p>${timestamp}</p>`)
 })
+
 
 
 const PORT = 3001
